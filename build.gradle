@@ -5,5 +5,7 @@ repositories {
 }
 
 dependencies {
-  testCompile 'junit:junit:4.12'
+  testCompile "junit:junit:$project.junitVersion"
+  testCompile "org.assertj:assertj-core:$project.assertJVersion"
+  testCompile "org.mockito:mockito-core:$project.mockitoVersion"
 }

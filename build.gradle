@@ -5,6 +5,8 @@ repositories {
 }
 
 dependencies {
+  compile "org.jetbrains:annotations:$project.annotationsVersion"
+
   testCompile "junit:junit:$project.junitVersion"
   testCompile "org.assertj:assertj-core:$project.assertJVersion"
   testCompile "org.mockito:mockito-core:$project.mockitoVersion"

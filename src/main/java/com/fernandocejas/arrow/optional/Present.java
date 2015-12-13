@@ -16,12 +16,12 @@
 
 package com.fernandocejas.arrow.optional;
 
-import com.fernandocejas.frodo.core.functions.Function;
+import com.fernandocejas.arrow.functions.Function;
 import java.util.Collections;
 import java.util.Set;
 import org.jetbrains.annotations.Nullable;
 
-import static com.fernandocejas.frodo.core.checks.Preconditions.checkNotNull;
+import static com.fernandocejas.arrow.checks.Preconditions.checkNotNull;
 
 /**
  * Implementation of an {@link Optional} containing a reference.

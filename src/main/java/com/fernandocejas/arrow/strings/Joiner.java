@@ -23,6 +23,8 @@ import java.util.Iterator;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+import static com.fernandocejas.arrow.checks.Preconditions.checkNotNull;
+
 /**
  * An object which joins pieces of text (specified as an array, {@link Iterable}, varargs or even a
  * {@link Map}) with a separator. It either appends the results to an {@link Appendable} or returns

@@ -16,10 +16,14 @@
 
 package com.fernandocejas.arrow.optional;
 
+import com.fernandocejas.arrow.collections.AbstractIterator;
+import com.fernandocejas.arrow.functions.Function;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Set;
 import org.jetbrains.annotations.Nullable;
+
+import static com.fernandocejas.arrow.checks.Preconditions.checkNotNull;
 
 /**
  * An immutable object that may contain a non-null reference to another object. Each

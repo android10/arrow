@@ -16,6 +16,7 @@
 
 package com.fernandocejas.arrow.functions;
 
+import com.fernandocejas.arrow.objects.MoreObjects;
 import com.fernandocejas.arrow.strings.Joiner;
 import com.fernandocejas.arrow.strings.Strings;
 import java.io.Serializable;
@@ -25,6 +26,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 import org.jetbrains.annotations.Nullable;
+
+import static com.fernandocejas.arrow.checks.Preconditions.checkNotNull;
 
 /**
  * Static utility methods pertaining to {@code Predicate} instances.

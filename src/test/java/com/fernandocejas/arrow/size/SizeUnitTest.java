@@ -16,5 +16,8 @@ public class SizeUnitTest {
 
     long resultTwo = SizeUnit.KILOBYTES.toBytes(4);
     assertThat(resultTwo).isEqualTo(4096);
+
+    long resultThree = SizeUnit.KILOBYTES.toBytes(8);
+    assertThat(resultThree).isEqualTo(8192);
   }
 }

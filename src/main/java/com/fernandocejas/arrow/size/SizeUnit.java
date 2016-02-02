@@ -15,65 +15,68 @@
  */
 package com.fernandocejas.arrow.size;
 
-public enum SizeUnit {
+import com.fernandocejas.arrow.annotations.WorkInProgress;
+
+@WorkInProgress
+enum SizeUnit {
 
   BYTES {
-    public long toBytes(long d) { return 0; }
-    public long toKilobytes(long d) { return 0; }
-    public long toMegabytes(long d) { return 0; }
-    public long toGigabytes(long d) { return 0; }
-    public long toTerabytes(long d) { return 0; }
+    public double toBytes(double d) { return 0; }
+    public double toKilobytes(long d) { return 0; }
+    public double toMegabytes(long d) { return 0; }
+    public double toGigabytes(long d) { return 0; }
+    public double toTerabytes(long d) { return 0; }
   },
 
   KILOBYTES {
-    public long toBytes(long d) { return d * Math.round(Math.pow(2, 10)); }
-    public long toKilobytes(long d) { return d; }
-    public long toMegabytes(long d) { return d / 1024; }
-    public long toGigabytes(long d) { return 0; }
-    public long toTerabytes(long d) { return 0; }
+    public double toBytes(double d) { return 0; }
+    public double toKilobytes(long d) { return 0; }
+    public double toMegabytes(long d) { return 0; }
+    public double toGigabytes(long d) { return 0; }
+    public double toTerabytes(long d) { return 0; }
   },
 
   MEGABYTES {
-    public long toBytes(long d) { return 0; }
-    public long toKilobytes(long d) { return 0; }
-    public long toMegabytes(long d) { return 0; }
-    public long toGigabytes(long d) { return 0; }
-    public long toTerabytes(long d) { return 0; }
+    public double toBytes(double d) { return 0; }
+    public double toKilobytes(long d) { return 0; }
+    public double toMegabytes(long d) { return 0; }
+    public double toGigabytes(long d) { return 0; }
+    public double toTerabytes(long d) { return 0; }
   },
 
   GIGABYTES {
-    public long toBytes(long d) { return 0; }
-    public long toKilobytes(long d) { return 0; }
-    public long toMegabytes(long d) { return 0; }
-    public long toGigabytes(long d) { return 0; }
-    public long toTerabytes(long d) { return 0; }
+    public double toBytes(double d) { return 0; }
+    public double toKilobytes(long d) { return 0; }
+    public double toMegabytes(long d) { return 0; }
+    public double toGigabytes(long d) { return 0; }
+    public double toTerabytes(long d) { return 0; }
   },
 
   TERABYTES {
-    public long toBytes(long d) { return 0; }
-    public long toKilobytes(long d) { return 0; }
-    public long toMegabytes(long d) { return 0; }
-    public long toGigabytes(long d) { return 0; }
-    public long toTerabytes(long d) { return 0; }
+    public double toBytes(double d) { return 0; }
+    public double toKilobytes(long d) { return 0; }
+    public double toMegabytes(long d) { return 0; }
+    public double toGigabytes(long d) { return 0; }
+    public double toTerabytes(long d) { return 0; }
   };
 
-  public long toBytes(long size) {
+  public double toBytes(double size) {
     throw new AbstractMethodError();
   }
 
-  public long toKilobytes(long size) {
+  public double toKilobytes(long size) {
     throw new AbstractMethodError();
   }
 
-  public long toMegabytes(long size) {
+  public double toMegabytes(long size) {
     throw new AbstractMethodError();
   }
 
-  public long toGigabytes(long size) {
+  public double toGigabytes(long size) {
     throw new AbstractMethodError();
   }
 
-  public long toTerabytes(long size) {
+  public double toTerabytes(long size) {
     throw new AbstractMethodError();
   }
 }

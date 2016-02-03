@@ -1,10 +1,57 @@
 apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+repositories {
+  jcenter()
+}
 
 targetCompatibility = JavaVersion.VERSION_1_7
 sourceCompatibility = JavaVersion.VERSION_1_7
 
-repositories {
-  jcenter()
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$project.bintrayPluginVersion"
+  }
+}
+
+apply plugin: 'com.jfrog.bintray'
+
+bintray {
+  user = project.hasProperty('bintrayUser') ? project.bintrayUser : System.getenv('BINTRAY_USERNAME')
+  key = project.hasProperty('bintrayKey') ? project.bintrayKey : System.getenv('BINTRAY_KEY')
+  publications = ['mavenJava']
+  pkg {
+    repo = 'maven'
+    name = "$project.codename"
+    desc = "$project.description"
+    websiteUrl = "$project.website"
+    issueTrackerUrl = "$project.issues"
+    licenses = ['Apache-2.0']
+    vcsUrl = "$project.website"
+    //noinspection GroovyAssignabilityCheck
+    version {
+      name = "$project.version"
+      desc = "$project.description"
+      released = new Date()
+      vcsTag = "$project.website"
+    }
+  }
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      groupId "$project.group"
+      artifactId "$project.artifact"
+      //noinspection GroovyAssignabilityCheck
+      version "$project.version"
+    }
+  }
 }
 
 dependencies {

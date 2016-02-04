@@ -15,6 +15,7 @@
  */
 package com.fernandocejas.arrow.objects;
 
+import com.fernandocejas.arrow.optional.Optional;
 import java.util.Arrays;
 import org.jetbrains.annotations.Nullable;
 

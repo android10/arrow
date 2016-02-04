@@ -12,6 +12,43 @@ if (JavaVersion.current().isJava8Compatible()) {
   }
 }
 
+def pomConfig = {
+  licenses {
+    license {
+      name "The Apache Software License, Version 2.0"
+      url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      distribution "repo"
+    }
+  }
+  developers {
+    developer {
+      id "$project.user"
+      name "$project.fullname"
+      email "$project.email"
+    }
+  }
+}
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      groupId "$project.group"
+      artifactId "$project.artifact"
+      //noinspection GroovyAssignabilityCheck
+      version "$project.version"
+
+      from components.java
+      artifact sourcesJar
+      artifact javadocJar
+      pom.withXml {
+        def root = asNode()
+        root.appendNode('description', "$project.description")
+        root.children().last() + pomConfig
+      }
+    }
+  }
+}
+
 bintray {
   user = project.hasProperty('bintrayUser') ? project.bintrayUser : System.getenv('BINTRAY_USERNAME')
   key = project.hasProperty('bintrayKey') ? project.bintrayKey : System.getenv('BINTRAY_KEY')
@@ -34,18 +71,6 @@ bintray {
   }
 }
 
-publishing {
-  publications {
-    mavenJava(MavenPublication) {
-      from components.java
-      groupId "$project.group"
-      artifactId "$project.artifact"
-      //noinspection GroovyAssignabilityCheck
-      version "$project.version"
-    }
-  }
-}
-
 task sourcesJar(type: Jar, dependsOn: classes) {
   classifier 'sources'
   from sourceSets.main.allSource
@@ -60,4 +85,8 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
   archives sourcesJar
   archives javadocJar
+}
+
+task installToLocalRepo(dependsOn: ['publishMavenJavaPublicationToMavenLocal']) {
+  logger.info "Installing $project.name"
 }

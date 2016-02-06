@@ -1,9 +1,11 @@
 ----------------------------------------------------------
-New Arrow version
+New Arrow version (TODO: automate this part)
 ----------------------------------------------------------
 1. Publish through gradle task:
 - ./gradlew publishArrow
-- Ignore this warning: "Skipping upload for missing file..." since the upload executes anyway.
+- Ignore this warning: "Skipping upload for missing file..."
+- https://github.com/novoda/bintray-release/issues/51
+
 
 2. Go to https://bintray.com/android10 and publish the files to both jcenter() and mavenCentral()
 

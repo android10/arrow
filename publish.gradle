@@ -18,18 +18,34 @@ if (JavaVersion.current().isJava8Compatible()) {
 //https://maven.apache.org/guides/mini/guide-central-repository-upload.html
 //http://central.sonatype.org/pages/requirements.html#a-complete-example-pom
 def pomConfig = {
-  licenses {
-    license {
-      name "The Apache Software License, Version 2.0"
-      url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-      distribution "repo"
+  project {
+    name "$project.name"
+    artifactId "$project.artifact"
+    packaging 'jar'
+    description "$project.description"
+    url "$project.website"
+    version "$project.version"
+
+    scm {
+      url "$project.website"
+      connection "$project.website"
+      developerConnection "$project.userwebsite"
     }
-  }
-  developers {
-    developer {
-      id "$project.user"
-      name "$project.fullname"
-      email "$project.email"
+
+    licenses {
+      license {
+        name "The Apache Software License, Version 2.0"
+        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        distribution "repo"
+      }
+    }
+
+    developers {
+      developer {
+        id "$project.user"
+        name "$project.fullname"
+        email "$project.email"
+      }
     }
   }
 }
@@ -44,6 +60,11 @@ publishing {
       from components.java
       artifact sourcesJar
       artifact javadocJar
+      pom.withXml {
+        def root = asNode()
+        root.appendNode('description', "$project.description")
+        root.children().last() + pomConfig
+      }
       artifact "$pomFilePath"
     }
   }
@@ -88,9 +109,10 @@ artifacts {
   archives javadocJar
 }
 
-task installToLocalRepo(dependsOn: ['publishMavenJavaPublicationToMavenLocal']) { }
+task installToLocalRepo(dependsOn: ['publishMavenJavaPublicationToMavenLocal']) {}
 model {
   tasks.generatePomFileForMavenJavaPublication {
+    pomDir = file("$pomFilePath")
     destination = file("$pomFilePath")
   }
 }

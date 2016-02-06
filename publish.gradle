@@ -4,6 +4,9 @@ apply plugin: 'maven-publish'
 
 apply plugin: 'com.jfrog.bintray'
 
+def buildDirectory = "$buildDir/libs"
+def pomFilePath = "$buildDirectory/$project.artifact-$project.version" + ".pom"
+
 if (JavaVersion.current().isJava8Compatible()) {
   allprojects {
     tasks.withType(Javadoc) {
@@ -12,6 +15,8 @@ if (JavaVersion.current().isJava8Compatible()) {
   }
 }
 
+//https://maven.apache.org/guides/mini/guide-central-repository-upload.html
+//http://central.sonatype.org/pages/requirements.html#a-complete-example-pom
 def pomConfig = {
   licenses {
     license {
@@ -36,15 +41,10 @@ publishing {
       artifactId "$project.artifact"
       //noinspection GroovyAssignabilityCheck
       version "$project.version"
-
       from components.java
       artifact sourcesJar
       artifact javadocJar
-      pom.withXml {
-        def root = asNode()
-        root.appendNode('description', "$project.description")
-        root.children().last() + pomConfig
-      }
+      artifact "$pomFilePath"
     }
   }
 }
@@ -54,13 +54,14 @@ bintray {
   key = project.hasProperty('bintrayKey') ? project.bintrayKey : System.getenv('BINTRAY_KEY')
   publications = ['mavenJava']
   pkg {
-    repo = 'maven'
+    repo = "$project.repository"
     name = "$project.codename"
     desc = "$project.description"
     websiteUrl = "$project.website"
     issueTrackerUrl = "$project.issues"
-    licenses = ['Apache-2.0']
+    licenses = ["$project.license"]
     vcsUrl = "$project.website"
+    labels = ['android', 'java', 'arrow']
     //noinspection GroovyAssignabilityCheck
     version {
       name = "$project.version"
@@ -87,6 +88,9 @@ artifacts {
   archives javadocJar
 }
 
-task installToLocalRepo(dependsOn: ['publishMavenJavaPublicationToMavenLocal']) {
-  logger.info "Installing $project.name"
+task installToLocalRepo(dependsOn: ['publishMavenJavaPublicationToMavenLocal']) { }
+model {
+  tasks.generatePomFileForMavenJavaPublication {
+    destination = file("$pomFilePath")
+  }
 }

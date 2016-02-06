@@ -25,3 +25,21 @@ dependencies {
   testCompile "org.assertj:assertj-core:$project.assertJVersion"
   testCompile "org.mockito:mockito-core:$project.mockitoVersion"
 }
+
+task buildArrow(type: Exec, dependsOn: ['clean', 'generatePomFileForMavenJavaPublication']) {
+  description = 'Builds Arrow Library.'
+  commandLine "./gradlew", "build"
+}
+buildArrow.mustRunAfter('clean', 'generatePomFileForMavenJavaPublication')
+
+task installArrow(type: Exec, dependsOn: ['buildArrow']) {
+  description = 'Installs Arrow Library to the maven local repository.'
+  commandLine "./gradlew", "installToLocalRepo"
+}
+installArrow.mustRunAfter('buildArrow')
+
+task publishArrow(type: Exec, dependsOn: ['buildArrow']) {
+  description = 'Publishes Arrow Library.'
+  commandLine "./gradlew", "bintrayUpload"
+}
+publishArrow.mustRunAfter('buildArrow')

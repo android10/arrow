@@ -17,6 +17,7 @@ if (JavaVersion.current().isJava8Compatible()) {
 
 //https://maven.apache.org/guides/mini/guide-central-repository-upload.html
 //http://central.sonatype.org/pages/requirements.html#a-complete-example-pom
+//https://medium.com/@vyarus/the-hard-way-to-maven-central-c9e16d163acc#.t0evkiaet
 def pomConfig = {
   licenses {
     license {
@@ -51,17 +52,14 @@ publishing {
       artifact javadocJar
       pom.withXml {
         def pomNode = asNode()
-        def dependenciesNode = pomNode.get("dependencies")
         //Clean up useless stuff in order to organize it
         pomNode.remove(pomNode.get("packaging"))
-        pomNode.remove(pomNode.get("dependencies"))
         //Add the information
         pomNode.appendNode('packaging', 'jar')
         pomNode.appendNode('name', "$project.name")
         pomNode.appendNode('description', "$project.description")
         pomNode.appendNode('url', "$project.website")
         pomNode.children().last() + pomConfig
-        pomNode.appendNode('dependencies', dependenciesNode)
       }
       artifact "$pomFilePath"
     }

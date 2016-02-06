@@ -1,0 +1,12 @@
+----------------------------------------------------------
+New Arrow version
+----------------------------------------------------------
+1. Publish through gradle task:
+- ./gradlew publishArrow
+- Ignore this warning: "Skipping upload for missing file..." since the upload executes anyway.
+
+2. Go to https://bintray.com/android10 and publish the files to both jcenter() and mavenCentral()
+
+3. Prepare for the next development version:
+- gradle.properties version property
+----------------------------------------------------------

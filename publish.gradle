@@ -18,35 +18,25 @@ if (JavaVersion.current().isJava8Compatible()) {
 //https://maven.apache.org/guides/mini/guide-central-repository-upload.html
 //http://central.sonatype.org/pages/requirements.html#a-complete-example-pom
 def pomConfig = {
-  project {
-    name "$project.name"
-    artifactId "$project.artifact"
-    packaging 'jar'
-    description "$project.description"
+  licenses {
+    license {
+      name "The Apache Software License, Version 2.0"
+      url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+      distribution "repo"
+    }
+  }
+  developers {
+    developer {
+      name "$project.fullname"
+      email "$project.email"
+      organization "$project.organization"
+      organizationUrl "$project.organizationUrl"
+    }
+  }
+  scm {
+    connection "$project.website"
+    developerConnection "$project.userwebsite"
     url "$project.website"
-    version "$project.version"
-
-    scm {
-      url "$project.website"
-      connection "$project.website"
-      developerConnection "$project.userwebsite"
-    }
-
-    licenses {
-      license {
-        name "The Apache Software License, Version 2.0"
-        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
-        distribution "repo"
-      }
-    }
-
-    developers {
-      developer {
-        id "$project.user"
-        name "$project.fullname"
-        email "$project.email"
-      }
-    }
   }
 }
 
@@ -55,15 +45,23 @@ publishing {
     mavenJava(MavenPublication) {
       groupId "$project.group"
       artifactId "$project.artifact"
-      //noinspection GroovyAssignabilityCheck
       version "$project.version"
       from components.java
       artifact sourcesJar
       artifact javadocJar
       pom.withXml {
-        def root = asNode()
-        root.appendNode('description', "$project.description")
-        root.children().last() + pomConfig
+        def pomNode = asNode()
+        def dependenciesNode = pomNode.get("dependencies")
+        //Clean up useless stuff in order to organize it
+        pomNode.remove(pomNode.get("packaging"))
+        pomNode.remove(pomNode.get("dependencies"))
+        //Add the information
+        pomNode.appendNode('packaging', 'jar')
+        pomNode.appendNode('name', "$project.name")
+        pomNode.appendNode('description', "$project.description")
+        pomNode.appendNode('url', "$project.website")
+        pomNode.children().last() + pomConfig
+        pomNode.appendNode('dependencies', dependenciesNode)
       }
       artifact "$pomFilePath"
     }

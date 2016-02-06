@@ -67,8 +67,8 @@ publishing {
 }
 
 bintray {
-  user = project.hasProperty('bintrayUser') ? project.bintrayUser : System.getenv('BINTRAY_USERNAME')
-  key = project.hasProperty('bintrayKey') ? project.bintrayKey : System.getenv('BINTRAY_KEY')
+  user = System.getenv('BINTRAY_USERNAME')
+  key = System.getenv('BINTRAY_KEY')
   publications = ['mavenJava']
   pkg {
     repo = "$project.repository"
@@ -85,6 +85,12 @@ bintray {
       desc = "$project.description"
       released = new Date()
       vcsTag = "$project.website"
+      mavenCentralSync {
+        sync = true
+        user = System.getenv('OSS_USERNAME')
+        password = System.getenv('OSS_KEY')
+        close = '1'
+      }
     }
   }
 }

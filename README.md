@@ -14,6 +14,7 @@ Arrow
 <br>
 Main Features
 -----------------
+- **```Optional<T>```:** An immutable object that may contain a non-null reference to another object. Each instance of this type either contains a non-null reference, or contains nothing (in which case we say that the reference is "absent"); it is never said to "contain null". <a href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional" target="_blank">Refer to Guava ```Optional<T>``` documentation.</a>
 
 
 <br>

@@ -16,6 +16,29 @@ Main Features
 -----------------
 - **```Optional<T>```:** An immutable object that may contain a non-null reference to another object. Each instance of this type either contains a non-null reference, or contains nothing (in which case we say that the reference is "absent"); it is never said to "contain null". <a href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional" target="_blank">Refer to Guava ```Optional<T>``` documentation.</a>
 
+- **```Strings```:** Static utility methods pertaining to String or CharSequence instances. <a href="https://github.com/google/guava/wiki/StringsExplained" target="_blank">Refer to Guava ```Strings``` documentation.</a>
+ 
+- **```Preconditions```:** Static convenience methods that help a method or constructor check whether it was invoked correctly (whether its preconditions have been met). These methods generally accept a boolean expression which is expected to be true (or in the case of checkNotNull, an object reference which is expected to be non-null). When false (or null) is passed instead, the Preconditions method throws an unchecked exception, which helps the calling method communicate to its caller that that caller has made a mistake. <a href="https://github.com/google/guava/wiki/PreconditionsExplained" target="_blank">Refer to Guava ```Preconditions``` documentation.</a>
+ 
+- **```Collections```:** Provides static methods for working with Collection instances. <a href="https://github.com/google/guava/wiki/CollectionUtilitiesExplained" target="_blank">Refer to Guava ```Collections``` documentation.</a>
+  - ```FilteredCollection.class```
+  - ```Lists.class```
+  - ```CollectPreconditions.class```
+  - ```Iterables.class```
+  - ```Iterators.class```
+  - ```MoreArrays.class```
+  - ```MoreCollections.class```
+   
+- **```MoreObjects```:** Helper functions that operate on any Object, and are not already provided in ```Objects```. <a href="https://github.com/google/guava/wiki/CommonObjectUtilitiesExplained" target="_blank">Refer to Guava ```MoreObjects``` documentation.</a>  
+ 
+- **```Annotations```:** These annotations has no side effect in your code, they are only used for decoration purpose, in case you need either to highlight it or to denotate it.
+  - ```@Beta```: Class, method or field is declared as Beta functionality
+  - ```@Experimental```: Class, method or field is declared as Experimental
+  - ```@Issue```: Class, method or field is linked to an issue. A ref value can be added to specify more information.
+  - ```@See```: Class, method or field is linked to a link. A ref value should be added in order to specify the link url.
+  - ```@VisibleForTesting```: Class, method or field has its visibility relaxed, so that it is more widely visible than otherwise necessary to make code testable.
+  - ```@WorkInProgress```: Class, method or field is declared as work in progress.
+
 
 <br>
 Using Arrow

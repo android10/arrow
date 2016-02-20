@@ -14,7 +14,7 @@ Arrow
 <br>
 Main Features
 -----------------
-- **```Optional<T>```:** An immutable object that may contain a non-null reference to another object. Each instance of this type either contains a non-null reference, or contains nothing (in which case we say that the reference is "absent"); it is never said to "contain null". <a href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional" target="_blank">Refer to Guava ```Optional<T>``` documentation.</a>
+- **```Optional<T>```:** An immutable object that may contain a non-null reference to another object. Each instance of this type either contains a non-null reference, or contains nothing (in which case we say that the reference is "absent"); it is never said to "contain null". <a href="https://github.com/google/guava/wiki/UsingAndAvoidingNullExplained#optional" target="_blank">Refer to Guava ```Optional<T>``` documentation</a> or <a href="http://fernandocejas.com/2016/02/20/how-to-use-optional-on-android-and-java/" target="_blank">How to use ```Optional<T>``` on Java and Android.</a>
 
 - **```Strings```:** Static utility methods pertaining to String or CharSequence instances. <a href="https://github.com/google/guava/wiki/StringsExplained" target="_blank">Refer to Guava ```Strings``` documentation.</a>
  

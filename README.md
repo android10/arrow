@@ -9,7 +9,7 @@ Arrow
 
 ```Arrow``` is Lightweight library toolbox for Java and Android Development. Basically it groups utilites and helper classes commonly used for mobile development. Most of them have been extracted from popular java libraries like ```Guava``` or ```Apache Commons``` plus other stuff added myself. Refer to the Main Features section for a fully explanation of its capabilities. 
 
-![arrow](https://i0.wp.com/movie42day.com/wp-content/uploads/2015/05/arrow-session-3-96334-300x169.jpg)
+![arrow](https://cloud.githubusercontent.com/assets/1624385/13253864/9852185c-da3e-11e5-93ff-e7d21e130130.jpg)
 
 <br>
 Main Features
